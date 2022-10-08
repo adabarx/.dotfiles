@@ -38,11 +38,11 @@ return require('packer').startup(function(use)
         'hrsh7th/nvim-cmp',
         requires = 'kyazdani42/nvim-web-devicons'
     }
-    use {
-        'tzachar/cmp-tabnine',
-        run = './install.sh',
-        requires = 'hrsh7th/nvim-cmp'
-    }
+    -- use {
+    --     'tzachar/cmp-tabnine',
+    --     run = './install.sh',
+    --     requires = 'hrsh7th/nvim-cmp'
+    -- }
     use 'onsails/lspkind.nvim'
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
@@ -118,10 +118,10 @@ return require('packer').startup(function(use)
     }
     use "karb94/neoscroll.nvim"
     use "metakirby5/codi.vim"
-    use {
-        'krivahtoo/silicon.nvim',
-        run = './install.sh build'
-    }
+    -- use {
+    --     'krivahtoo/silicon.nvim',
+    --     run = './install.sh build'
+    -- }
 end)
 
 -- Misc notes that don't belong in the todo
