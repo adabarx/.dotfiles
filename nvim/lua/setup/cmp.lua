@@ -1,6 +1,6 @@
 -- Set up nvim-cmp.
 
-local tabnine = require('cmp_tabnine.config')
+-- local tabnine = require('cmp_tabnine.config')
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
@@ -18,7 +18,7 @@ cmp.setup({
                 buffer = "~Buffer",
                 nvim_lsp = "~LSP",
                 luasnip = "~LuaSnip",
-                cmp_tabnine = "~T9",
+                -- cmp_tabnine = "~T9",
             })
         })
     },
@@ -50,26 +50,26 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'cmp_tabnine' },
-        --{ name = 'luasnip' },
+        -- { name = 'cmp_tabnine' },
+        { name = 'luasnip' },
     }, {
         { name = 'buffer' },
     })
 })
 
-tabnine.setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = '..',
-    ignored_file_types = {
-        -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-    },
-    show_prediction_strength = false
-})
+-- tabnine.setup({
+--     max_lines = 1000,
+--     max_num_results = 20,
+--     sort = true,
+--     run_on_every_keystroke = true,
+--     snippet_placeholder = '..',
+--     ignored_file_types = {
+--         -- default is not to ignore
+--         -- uncomment to ignore in lua:
+--         -- lua = true
+--     },
+--     show_prediction_strength = false
+-- })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
