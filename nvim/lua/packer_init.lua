@@ -25,9 +25,13 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
+    -- Add Additional References
+    use 'milisims/nvim-luaref'
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
+    use 'folke/lua-dev.nvim'
 
     -- CMP
     use 'hrsh7th/cmp-nvim-lsp'
@@ -122,6 +126,16 @@ return require('packer').startup(function(use)
         'krivahtoo/silicon.nvim',
         run = './install.sh build'
     }
+    use {
+        "akinsho/toggleterm.nvim",
+        tag = '*',
+        config = function()
+            require("toggleterm").setup()
+        end
+    }
+
+    -- F L E S H   P R I S O N
+    use "/Users/meowmeowface/projects/idea-ranch.nvim"
 end)
 
 -- Misc notes that don't belong in the todo

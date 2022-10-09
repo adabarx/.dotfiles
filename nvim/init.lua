@@ -12,4 +12,6 @@ require('setup.telescope')
 require('setup.misc')
 require('setup.neoscroll')
 
+require('autocommands')
+require('globals')
 require('keymap')

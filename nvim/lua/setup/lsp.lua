@@ -1,11 +1,13 @@
+require("lua-dev").setup({})
+
 local lsp_configs = {
-    pyright = {},
-    eslint = {},
-    gdscript = {},
+    pyright     = {},
+    eslint      = {},
+    gdscript    = {},
     tailwindcss = {},
-    taplo = {},
-    tsserver = {},
-    marksman = {},
+    taplo       = {},
+    tsserver    = {},
+    marksman    = {},
     volar = {
         filetypes = {
             'typescript',
@@ -45,9 +47,7 @@ for server, lsp_config in pairs(lsp_configs) do
         end,
     }
 
-    for k, v in pairs(lsp_config) do
-        config[k] = v
-    end
+    vim.tbl_deep_extend("force", config, lsp_config)
 
     require('lspconfig')[server].setup(config)
 end
