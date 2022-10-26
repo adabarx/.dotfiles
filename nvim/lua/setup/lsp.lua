@@ -8,6 +8,7 @@ local lsp_configs = {
     taplo       = {},
     tsserver    = {},
     marksman    = {},
+    elmls       = {},
     volar = {
         filetypes = {
             'typescript',
@@ -34,16 +35,16 @@ local lsp_configs = {
 
 for server, lsp_config in pairs(lsp_configs) do
     local config = {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = function()
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-            vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, { buffer = 0 })
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = 0 })
-            vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, { buffer = 0 })
-            vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer = 0 })
-            vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = 0 })
-            vim.keymap.set('n', '<leader>l', vim.lsp.buf.formatting, { buffer = 0 })
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0, desc = "Hover Info" })
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0, desc = "Go To Definition" })
+            vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, { buffer = 0, desc = "Go To Type Definition" })
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = 0, desc = "Go To Implementation" })
+            vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, { buffer = 0, desc = "Next Diagnostics" })
+            vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer = 0, desc = "Prev Diagnostics" })
+            vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = 0, desc = "Rename Variable" })
+            vim.keymap.set('n', '<leader>l', vim.lsp.buf.formatting, { buffer = 0, desc = "Format File" })
         end,
     }
 
@@ -103,3 +104,6 @@ rt.setup({
         end,
     },
 })
+
+require"fidget".setup{}
+

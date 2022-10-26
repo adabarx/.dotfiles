@@ -31,20 +31,20 @@ local banned_colors = {
 }
 
 local not_in_table = function(table, element)
-  for _, value in pairs(table) do
-    if value == element then
-      return false
+    for _, value in pairs(table) do
+        if value == element then
+            return false
+        end
     end
-  end
-  return true
+    return true
 end
 
 local shuffle = function(tbl)
-  for i = #tbl, 2, -1 do
-    local j = math.random(i)
-    tbl[i], tbl[j] = tbl[j], tbl[i]
-  end
-  return tbl
+    for i = #tbl, 2, -1 do
+        local j = math.random(i)
+        tbl[i], tbl[j] = tbl[j], tbl[i]
+    end
+    return tbl
 end
 
 -- for color, hex in pairs(colors) do
@@ -58,9 +58,16 @@ end
 
 color_hexs = shuffle(color_hexs)
 
+require('orgmode').setup_ts_grammar()
+
 -- Treesitter stuff
 require 'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'org' },
+    },
     ignore_install = { 'phpdoc' },
+    ensure_installed = { 'org' },
     context_commentstring = {
         enable = true
     },
@@ -73,5 +80,10 @@ require 'nvim-treesitter.configs'.setup {
         -- termcolors = {} -- table of colour name strings
     }
 }
+
+require('orgmode').setup({
+    org_agenda_files = { '~/orgs/**/*' },
+    org_default_notes_file = '~/orgs/refile.org',
+})
 
 require('nvim-ts-autotag').setup()

@@ -2,20 +2,21 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- TODO:
-        -- debugging
-            -- https://github.com/mfussenegger/nvim-dap
-            -- https://github.com/rcarriga/nvim-dap-ui
-            -- https://github.com/Pocco81/dap-buddy.nvim
-        -- null-ls fmt, code actions, etc https://github.com/jose-elias-alvarez/null-ls.nvim
-        -- set up trouble https://github.com/folke/trouble.nvim
-        -- bracey looks sick af https://github.com/turbio/bracey.vim
-        -- https://github.com/simrat39/symbols-outline.nvim
-        -- https://github.com/ray-x/lsp_signature.nvim
+    -- debugging
+    -- https://github.com/mfussenegger/nvim-dap
+    -- https://github.com/rcarriga/nvim-dap-ui
+    -- https://github.com/Pocco81/dap-buddy.nvim
+    -- null-ls fmt, code actions, etc https://github.com/jose-elias-alvarez/null-ls.nvim
+    -- set up trouble https://github.com/folke/trouble.nvim
+    -- bracey looks sick af https://github.com/turbio/bracey.vim
+    -- https://github.com/simrat39/symbols-outline.nvim
+    -- https://github.com/ray-x/lsp_signature.nvim
 
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     -- Theme
+    use 'kyazdani42/nvim-web-devicons'
     use {
         "catppuccin/nvim",
         as = "catppuccin"
@@ -32,12 +33,22 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
     use 'folke/lua-dev.nvim'
+    use 'j-hui/fidget.nvim'
+    use {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    }
+    use {
+        'kosayoda/nvim-lightbulb',
+        requires = 'antoinemadec/FixCursorHold.nvim',
+    }
 
     -- CMP
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use {
         'hrsh7th/nvim-cmp',
         requires = 'kyazdani42/nvim-web-devicons'
@@ -70,6 +81,17 @@ return require('packer').startup(function(use)
     use {
         'ThePrimeagen/harpoon',
         requires = "nvim-lua/plenary.nvim",
+    }
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
     }
 
     -- Text Manipulation
@@ -108,6 +130,7 @@ return require('packer').startup(function(use)
     }
 
     -- Misc
+    use 'kdheepak/lazygit.nvim'
     use {
         "folke/zen-mode.nvim",
         config = function()
@@ -133,9 +156,49 @@ return require('packer').startup(function(use)
             require("toggleterm").setup()
         end
     }
-
-    -- F L E S H   P R I S O N
-    use "/Users/meowmeowface/projects/idea-ranch.nvim"
+    use { 'nvim-orgmode/orgmode',
+        config = function()
+            require('orgmode').setup {}
+        end
+    }
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
+    use {
+        'abecodes/tabout.nvim',
+        config = function()
+            require('tabout').setup {
+                tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+                backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+                act_as_tab = true, -- shift content if tab out is not possible
+                act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+                default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+                default_shift_tab = '<C-d>', -- reverse shift default action,
+                enable_backwards = true, -- well ...
+                completion = true, -- if the tabkey is used in a completion pum
+                tabouts = {
+                    { open = "'", close = "'" },
+                    { open = '"', close = '"' },
+                    { open = '`', close = '`' },
+                    { open = '(', close = ')' },
+                    { open = '[', close = ']' },
+                    { open = '<', close = '>' },
+                    { open = '{', close = '}' }
+                },
+                ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+                exclude = {} -- tabout will ignore these filetypes
+            }
+        end,
+        wants = { 'nvim-treesitter' }, -- or require if not used so far
+        after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
+    }
 end)
 
 -- Misc notes that don't belong in the todo
@@ -143,4 +206,3 @@ end)
 -- READ THIS: https://github.com/nanotee/nvim-lua-guide
 -- https://github.com/mattn/vim-gist
 -- https://github.com/sindrets/diffview.nvim
-
