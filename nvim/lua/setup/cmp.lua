@@ -15,18 +15,18 @@ vim.cmd("set completeopt=menuone,noinsert,noselect")
 cmp.setup({
     preselect = cmp.PreselectMode.None,
     formatting = {
+        fields = { "kind", "abbr", "menu" },
         format = lspkind.cmp_format({
-            mode = 'symbol_text',
+            mode = 'symbol',
             menu = ({
                 buffer = "~Buffer",
                 nvim_lsp = "~LSP",
                 luasnip = "~LuaSnip",
-                cmp_tabnine = "~T9",
-            })
+                cmp_tabnine = "~Tab9",
+            }),
         })
     },
     snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
         end,
@@ -36,39 +36,75 @@ cmp.setup({
         -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
+        -- ['<Tab>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --     elseif luasnip.expand_or_jumpable() then
+        --         luasnip.expand_or_jump()
+        --     elseif has_words_before() then
+        --         cmp.complete()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { 'i', 's' }),
+        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     elseif luasnip.expand_or_jumpable() then
+        --         luasnip.expand_or_jump()
+        --     elseif has_words_before() then
+        --         cmp.complete()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { 'i', 's' }),
+        -- ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-k>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
             else
                 fallback()
             end
-        end, { 'i', 's' }),
-        -- ['<C-Space>'] = cmp.mapping.complete(),
+        end),
+        ['<C-j>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end),
+        ['<C-l>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+                cmp.select_prev_item()
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end),
+        ['<C-h>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+                cmp.select_next_item()
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'cmp_tabnine' },
+        { name = 'nvim-lsp-signature-help'},
         --{ name = 'luasnip' },
     }, {
         { name = 'buffer' },
-    })
+    }),
+    experimental = {
+        ghost_text = true
+    }
 })
 
 tabnine.setup({

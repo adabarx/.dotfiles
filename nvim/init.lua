@@ -11,6 +11,7 @@ require('setup.telescope')
 
 require('setup.misc')
 require('setup.neoscroll')
+-- require('setup.which_key')
 
 require('autocommands')
 require('globals')
