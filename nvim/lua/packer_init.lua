@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
-    use 'folke/lua-dev.nvim'
+    use 'folke/neodev.nvim'
     use 'j-hui/fidget.nvim'
     use {
         'weilbith/nvim-code-action-menu',
@@ -70,7 +70,6 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
-    use 'p00f/nvim-ts-rainbow'
 
     -- Navigation
     use {
@@ -137,28 +136,13 @@ return require('packer').startup(function(use)
             require("zen-mode").setup()
         end
     }
-    use {
-        "folke/twilight.nvim",
-        config = function()
-            require("twilight").setup()
-        end
-    }
     use "karb94/neoscroll.nvim"
     use "metakirby5/codi.vim"
-    use {
-        'krivahtoo/silicon.nvim',
-        run = './install.sh build'
-    }
     use {
         "akinsho/toggleterm.nvim",
         tag = '*',
         config = function()
             require("toggleterm").setup()
-        end
-    }
-    use { 'nvim-orgmode/orgmode',
-        config = function()
-            require('orgmode').setup {}
         end
     }
     use {

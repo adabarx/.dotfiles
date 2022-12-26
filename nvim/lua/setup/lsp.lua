@@ -1,4 +1,4 @@
-require("lua-dev").setup({})
+require("neodev").setup({})
 
 local lsp_configs = {
     pyright     = {},
@@ -6,19 +6,10 @@ local lsp_configs = {
     gdscript    = {},
     tailwindcss = {},
     taplo       = {},
-    tsserver    = {},
+    svelte      = {},
+    tsserver    = { root_dir = require("lspconfig").util.root_pattern("package.json", "package-lock.json") },
+    -- denols      = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") },
     marksman    = {},
-    elmls       = {},
-    volar = {
-        filetypes = {
-            'typescript',
-            'javascript',
-            'javascriptreact',
-            'typescriptreact',
-            'vue',
-            'json'
-        }
-    },
     sumneko_lua = {
         settings = {
             Lua = {
@@ -44,7 +35,7 @@ for server, lsp_config in pairs(lsp_configs) do
             vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, { buffer = 0, desc = "Next Diagnostics" })
             vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer = 0, desc = "Prev Diagnostics" })
             vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = 0, desc = "Rename Variable" })
-            vim.keymap.set('n', '<leader>l', vim.lsp.buf.formatting, { buffer = 0, desc = "Format File" })
+            vim.keymap.set('n', '<leader>l', vim.lsp.buf.format, { buffer = 0, desc = "Format File" })
         end,
     }
 
@@ -105,5 +96,4 @@ rt.setup({
     },
 })
 
-require"fidget".setup{}
-
+require "fidget".setup {}
