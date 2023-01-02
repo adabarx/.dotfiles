@@ -10,6 +10,7 @@ local lsp_configs = {
     tsserver    = { root_dir = require("lspconfig").util.root_pattern("package.json", "package-lock.json") },
     -- denols      = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") },
     marksman    = {},
+    volar       = {},
     sumneko_lua = {
         settings = {
             Lua = {

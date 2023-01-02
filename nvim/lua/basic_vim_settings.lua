@@ -18,7 +18,7 @@ vim.g.mapleader = " "
 vim.opt.relativenumber = true
 
 vim.api.nvim_exec([[
-hi Bang ctermfg=red guifg=red
+hi Bang ctermfg=gray guifg=gray
 match Bang /\%>99v.*\%<101v/
 ]], true)
 

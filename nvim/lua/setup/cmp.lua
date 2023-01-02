@@ -58,7 +58,6 @@ cmp.setup({
         --         fallback()
         --     end
         -- end, { 'i', 's' }),
-        -- ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-k>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -93,12 +92,13 @@ cmp.setup({
         end),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-Space>'] = cmp.mapping.complete(),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'cmp_tabnine' },
+        { name = 'luasnip' },
         { name = 'nvim-lsp-signature-help'},
-        --{ name = 'luasnip' },
+        -- { name = 'cmp_tabnine' },
     }, {
         { name = 'buffer' },
     }),
@@ -107,19 +107,19 @@ cmp.setup({
     }
 })
 
-tabnine.setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = '..',
-    ignored_file_types = {
-        -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-    },
-    show_prediction_strength = false
-})
+-- tabnine.setup({
+--     max_lines = 1000,
+--     max_num_results = 20,
+--     sort = true,
+--     run_on_every_keystroke = true,
+--     snippet_placeholder = '..',
+--     ignored_file_types = {
+--         -- default is not to ignore
+--         -- uncomment to ignore in lua:
+--         -- lua = true
+--     },
+--     show_prediction_strength = false
+-- })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
