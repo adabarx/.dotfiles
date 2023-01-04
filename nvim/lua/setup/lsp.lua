@@ -10,6 +10,7 @@ local lsp_configs = {
     tsserver    = { root_dir = require("lspconfig").util.root_pattern("package.json", "package-lock.json") },
     -- denols      = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") },
     marksman    = {},
+    phpactor    = {},
     volar       = {},
     sumneko_lua = {
         settings = {
@@ -98,3 +99,18 @@ rt.setup({
 })
 
 require "fidget".setup {}
+
+-- setup null-ls
+
+local null_ls = require('null-ls')
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+-- local code_actions = null_ls.builtins.code_actions
+
+null_ls.setup({
+    sources = {
+        formatting.eslint,
+        diagnostics.psalm,
+    }
+})

@@ -39,8 +39,8 @@ return require('packer').startup(function(use)
     -- Debugging, Linting, and Formatting
     -- use 'mfussenegger/nvim-dap'
     -- use 'rcarriga/nvim-dap-ui'
-    -- use 'jose-elias-alvarez/null-ls.nvim'
-    -- use 'lewis6991/gitsigns.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use 'lewis6991/gitsigns.nvim'
 
     -- CMP
     use 'hrsh7th/cmp-nvim-lsp'

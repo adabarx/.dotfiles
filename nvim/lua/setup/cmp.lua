@@ -1,6 +1,6 @@
 -- Set up nvim-cmp.
 
-local tabnine = require('cmp_tabnine.config')
+-- local tabnine = require('cmp_tabnine.config')
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
