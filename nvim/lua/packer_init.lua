@@ -29,18 +29,18 @@ return require('packer').startup(function(use)
         'kosayoda/nvim-lightbulb',
         requires = 'antoinemadec/FixCursorHold.nvim',
     }
-    use{
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = function()
-            require("lsp_lines").setup()
-        end,
-    }
+    -- use{
+    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --     config = function()
+    --         require("lsp_lines").setup()
+    --     end,
+    -- }
 
     -- Debugging, Linting, and Formatting
     -- use 'mfussenegger/nvim-dap'
     -- use 'rcarriga/nvim-dap-ui'
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'lewis6991/gitsigns.nvim'
+    -- use 'jose-elias-alvarez/null-ls.nvim'
+    -- use 'lewis6991/gitsigns.nvim'
 
     -- CMP
     use 'hrsh7th/cmp-nvim-lsp'
@@ -166,6 +166,25 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use {
+        'phaazon/mind.nvim',
+        branch = 'v2.2',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require'mind'.setup()
+        end
+    }
+    -- use {
+    --     'pwntester/octo.nvim',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'nvim-telescope/telescope.nvim',
+    --         'kyazdani42/nvim-web-devicons',
+    --     },
+    --     config = function ()
+    --         require"octo".setup()
+    --     end
+    -- }
 end)
 
 

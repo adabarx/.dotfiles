@@ -1,17 +1,20 @@
 require('basic_vim_settings')
+require('globals')
+require('keymap')
 
 require('packer_init')
-
-require('setup.catppuccin')
 
 require('setup.lsp')
 require('setup.cmp')
 require('setup.treesitter')
-require('setup.telescope')
 
-require('setup.neoscroll')
+if not vim.g.vscode then
+    require('setup.catppuccin')
+    require('setup.telescope')
+    require('setup.neoscroll')
+    require('autocommands')
+end
+
+
 -- require('setup.which_key')
 
-require('autocommands')
-require('globals')
-require('keymap')
