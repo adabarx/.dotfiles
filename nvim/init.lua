@@ -15,6 +15,5 @@ if not vim.g.vscode then
     require('autocommands')
 end
 
-
--- require('setup.which_key')
+require('setup.which_key')
 
