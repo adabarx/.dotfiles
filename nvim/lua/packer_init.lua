@@ -67,6 +67,7 @@ return require('packer').startup(function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
     use 'nvim-treesitter/nvim-treesitter-context'
+    use 'nvim-treesitter/playground'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
 

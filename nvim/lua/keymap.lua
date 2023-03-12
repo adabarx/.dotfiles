@@ -10,6 +10,10 @@ end
 
 -- add semicolon to end of current line
 keyset('n', '&', 'mYA;<esc>`Y<cmd>delmarks Y<cr>', { noremap = true })
+-- no highlight
+keyset('n', '<leader>n', '<cmd>noh<cr>', { noremap = true })
+-- source current fille
+keyset('n', '<leader><leader>s', '<cmd>%so<cr>', { noremap = true })
 
 -- WhichKey Groups
 local wk = require('which-key')

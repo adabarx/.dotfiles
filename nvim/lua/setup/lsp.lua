@@ -1,18 +1,18 @@
 require("neodev").setup({})
 
 local lsp_configs = {
-    pyright         = {},
-    eslint          = {},
-    gdscript        = {},
-    tailwindcss     = {},
-    taplo           = {},
-    svelte          = {},
+    pyright      = {},
+    eslint       = {},
+    gdscript     = {},
+    tailwindcss  = {},
+    taplo        = {},
+    svelte       = {},
     -- tsserver        = { root_dir = require("lspconfig").util.root_pattern("package.json", "package-lock.json") },
-    denols          = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") },
-    marksman        = {},
-    intelephense    = {},
-    volar           = {},
-    sumneko_lua     = {
+    denols       = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") },
+    marksman     = {},
+    intelephense = {},
+    volar        = {},
+    lua_ls       = {
         settings = {
             Lua = {
                 runtime = {
